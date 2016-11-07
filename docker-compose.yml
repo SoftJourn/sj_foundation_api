@@ -1,0 +1,16 @@
+version: '2'
+services:
+  sj_projects:
+    build:
+      context: ./
+    ports:
+      - "3010:3010"
+#    volumes:
+      # User-relative path
+#      - ~/dev/loopback-mongo-sandbox:/apps/loopback-mongo-sandbox
+#    depends_on:
+#     - mongo
+  mysql:
+    image: msyql
+    ports:
+      - "3306:3306"

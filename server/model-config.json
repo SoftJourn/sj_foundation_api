@@ -34,7 +34,7 @@
   },
   "project": {
     "dataSource": "mysql",
-    "public": false
+    "public": true
   },
   "transaction": {
     "dataSource": "mysql",

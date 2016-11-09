@@ -4,12 +4,12 @@
     "connector": "memory"
   },
   "mysql": {
-    "host": "localhost",
-    "port": 32772,
-    "database": "sj_projects",
-    "password": "root",
+    "host": "db",
+    "port": 3306,
+    "database": "wordpress",
+    "password": "wordpress",
     "name": "mysql",
-    "user": "root",
-    "connector": "mysql"
+    "connector": "mysql",
+    "user": "wordpress"
   }
 }

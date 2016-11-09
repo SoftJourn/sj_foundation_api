@@ -7,9 +7,9 @@ var app = module.exports = loopback();
 
 app.start = function() {
 
-  app.datasources['mysql'].automigrate(['account','transaction', 'project', 'income'], function(err) {
-    console.log(err);
-  });
+  // app.datasources['mysql'].automigrate(['account','transaction', 'project', 'income'], function(err) {
+  //   console.log(err);
+  // });
   // start the web server
   return app.listen(function() {
     app.emit('started');

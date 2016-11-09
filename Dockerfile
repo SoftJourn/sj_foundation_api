@@ -1,21 +1,11 @@
-# you can get details about the following image from https://hub.docker.com/_/node/
-FROM node:0.10.36
+FROM node:4-onbuild
 
-RUN apt-get -y update
-RUN apt-get install -y tree
-RUN apt-get install -y vim
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY package.json /usr/src/app/
+RUN npm install
+COPY . /usr/src/app
 
-# https://github.com/dockerfile/mariadb/issues/3
-ENV TERM=xterm
+EXPOSE 3010
 
-# https://github.com/jfrazelle/dockerfiles/issues/12
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get install -y less
-
-RUN mkdir -p /apps/loopback-mongo-sandbox
-WORKDIR /apps/loopback-mongo-sandbox
-
-#COPY . /apps/loopback-mongo-sandbox
-
-EXPOSE 3000
-CMD [ "node","server/server.js" ]
+CMD [ "node", "." ]

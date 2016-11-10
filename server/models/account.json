@@ -6,10 +6,6 @@
     "validateUpsert": true
   },
   "properties": {
-    "id": {
-      "type": "number",
-      "required": true
-    },
     "name": {
       "type": "string"
     },
@@ -26,6 +22,11 @@
     "transactions": {
       "type": "hasMany",
       "model": "transaction",
+      "foreignKey": ""
+    },
+    "incomes": {
+      "type": "hasMany",
+      "model": "income",
       "foreignKey": ""
     }
   },

@@ -11,6 +11,9 @@
     },
     "price": {
       "type": "number"
+    },
+    "status": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -19,6 +22,12 @@
       "type": "hasMany",
       "model": "transaction",
       "foreignKey": ""
+    },
+    "accounts": {
+      "type": "hasMany",
+      "model": "account",
+      "foreignKey": "projectId",
+      "through": "transaction"
     }
   },
   "acls": [],

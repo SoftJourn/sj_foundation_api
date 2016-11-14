@@ -28,6 +28,12 @@
       "type": "hasMany",
       "model": "income",
       "foreignKey": ""
+    },
+    "projects": {
+      "type": "hasMany",
+      "model": "project",
+      "foreignKey": "accountId",
+      "through": "transaction"
     }
   },
   "acls": [],

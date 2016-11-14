@@ -19,7 +19,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "project": {
+      "type": "belongsTo",
+      "model": "project",
+      "foreignKey": ""
+    },
+    "account": {
+      "type": "belongsTo",
+      "model": "account",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

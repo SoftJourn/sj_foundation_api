@@ -12,6 +12,10 @@
     "price": {
       "type": "number"
     },
+    "canDonateMore": {
+      "type": "boolean",
+      "default": false
+    },
     "status": {
       "type": "string"
     }

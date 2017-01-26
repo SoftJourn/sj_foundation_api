@@ -27,6 +27,18 @@
     },
     "coinsAddresses": {
       "type": "string"
+    },
+    "dueDate": {
+      "type": "date",
+      "dataType": "timestamp"
+    },
+    "public": {
+      "type": "boolean",
+      "default": false
+    },
+    "published": {
+      "type": "boolean",
+      "default": false
     }
   },
   "validations": [],

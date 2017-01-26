@@ -4,7 +4,7 @@
     "connector": "memory"
   },
   "mysql": {
-    "host": "localhost",
+    "host": "pma.testing.softjourn.if.ua",
     "port": 3306,
     "database": "sj_foundation",
     "password": "sj_foundation",

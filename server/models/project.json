@@ -17,7 +17,8 @@
       "default": false
     },
     "status": {
-      "type": "string"
+      "type": "string",
+      "default": "draft"
     },
     "contractAddress": {
       "type": "string"
@@ -39,6 +40,20 @@
     "published": {
       "type": "boolean",
       "default": false
+    },
+    "timeCreated": {
+      "type": "number"
+    },
+    "withdraw": {
+      "type": "boolean",
+      "default": false
+    },
+    "donationStatus": {
+      "type": "string",
+      "default": "new"
+    },
+    "category": {
+      "type": "string"
     }
   },
   "validations": [],

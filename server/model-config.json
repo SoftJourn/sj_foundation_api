@@ -10,7 +10,8 @@
       "loopback/common/mixins",
       "loopback/server/mixins",
       "../common/mixins",
-      "./mixins"
+      "./mixins",
+      "../node_modules/loopback-ds-timestamp-mixin"
     ]
   },
   "User": {
@@ -45,6 +46,10 @@
     "public": true
   },
   "income": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "update": {
     "dataSource": "mysql",
     "public": true
   }

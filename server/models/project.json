@@ -68,6 +68,11 @@
       "model": "account",
       "foreignKey": "projectId",
       "through": "transaction"
+    },
+    "updates": {
+      "type": "hasMany",
+      "model": "update",
+      "foreignKey": ""
     }
   },
   "acls": [],

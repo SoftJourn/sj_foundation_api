@@ -7,9 +7,17 @@ var app = module.exports = loopback();
 
 app.start = function() {
 
-  // app.datasources['mysql'].automigrate(['account','transaction', 'project', 'income'], function(err) {
-  //   console.log(err);
-  // });
+  // mysql autoupdate if needed
+  var models = ['account','transaction', 'project', 'income', 'update'];
+  app.datasources['mysql'].isActual(models, function(err, actual) {
+    if (!actual) {
+      app.datasources['mysql'].autoupdate(models, function(err, result) {
+        console.log('database updated');
+      });
+    }
+  });
+
+  // start the web server
   // start the web server
   return app.listen(function() {
     app.emit('started');

@@ -1,0 +1,25 @@
+{
+  "name": "update",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "content": {
+      "type": "string",
+      "required": true
+    },
+    "username": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "mixins": {
+    "TimeStamp" : true
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

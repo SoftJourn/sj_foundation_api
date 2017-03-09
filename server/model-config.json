@@ -52,5 +52,13 @@
   "update": {
     "dataSource": "mysql",
     "public": true
+  },
+  "file": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "container": {
+    "dataSource": "storage",
+    "public": true
   }
 }

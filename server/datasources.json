@@ -16,7 +16,7 @@
     "name": "storage",
     "connector": "loopback-component-storage",
     "provider": "filesystem",
-    "root": "/tmp",
+    "root": "/tmp/",
     "maxFileSize": "52428800"
   }
 }

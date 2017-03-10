@@ -20,7 +20,6 @@ module.exports = function(Account) {
           cb(null, balance);
         });
       });
-
     });
   }
   Account.setCoinsToAll = function(amount, cb) {

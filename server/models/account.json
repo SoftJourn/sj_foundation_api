@@ -1,6 +1,7 @@
 {
   "name": "account",
-  "base": "PersistedModel",
+  "plural": "accounts",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -12,9 +13,6 @@
     "email": {
       "type": "string",
       "required": true
-    },
-    "amount": {
-      "type": "number"
     }
   },
   "validations": [],
@@ -34,6 +32,14 @@
       "model": "project",
       "foreignKey": "accountId",
       "through": "transaction"
+    },
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "accountAccessToken",
+      "foreignKey": "accountId",
+      "options": {
+        "disableInclude": true
+      }
     }
   },
   "acls": [],

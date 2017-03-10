@@ -2,13 +2,33 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+var path = require('path');
+var bodyParser = require('body-parser');
 
 var app = module.exports = loopback();
 
+boot(app, __dirname);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// to support JSON-encoded bodies
+app.middleware('parse', bodyParser.json());
+// to support URL-encoded bodies
+app.middleware('parse', bodyParser.urlencoded({
+  extended: true,
+}));
+
+app.use(loopback.token({
+  model: app.models.accountAccessToken,
+  currentUserLiteral: 'me'
+}));
+
+
+//START SERVER
 app.start = function() {
 
   // mysql autoupdate if needed
-  var models = ['account','transaction', 'project', 'income', 'update'];
+  var models = ['account','transaction', 'project', 'income', 'update', 'accountAccessToken'];
   app.datasources['mysql'].isActual(models, function(err, actual) {
     if (!actual) {
       app.datasources['mysql'].autoupdate(models, function(err, result) {
@@ -17,7 +37,6 @@ app.start = function() {
     }
   });
 
-  // start the web server
   // start the web server
   return app.listen(function() {
     app.emit('started');

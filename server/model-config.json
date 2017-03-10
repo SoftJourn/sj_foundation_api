@@ -4,7 +4,8 @@
       "loopback/common/models",
       "loopback/server/models",
       "../common/models",
-      "./models"
+      "./models",
+      "../node_modules/loopback-component-passport/lib/models"
     ],
     "mixins": [
       "loopback/common/mixins",
@@ -13,13 +14,6 @@
       "./mixins",
       "../node_modules/loopback-ds-timestamp-mixin"
     ]
-  },
-  "User": {
-    "dataSource": "db"
-  },
-  "AccessToken": {
-    "dataSource": "db",
-    "public": false
   },
   "ACL": {
     "dataSource": "db",
@@ -52,5 +46,9 @@
   "update": {
     "dataSource": "mysql",
     "public": true
+  },
+  "accountAccessToken": {
+    "dataSource": "mysql",
+    "public": false
   }
 }

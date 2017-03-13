@@ -24,7 +24,7 @@ module.exports = function(Account) {
     });
   }
   Account.setCoinsToAll = function(amount, cb) {
-    Account.find({include: 'incomes'}, function (err, accounts) {
+      Account.find({include: 'incomes'}, function (err, accounts) {
       accounts.forEach(function(account) {
         // post.owner points to the relation method instead of the owner instance
         var a = account.incomes.create({

@@ -8,7 +8,7 @@ var app = module.exports = loopback();
 app.start = function() {
 
   // mysql autoupdate if needed
-  var models = ['account','transaction', 'project', 'income', 'update'];
+  var models = ['account','transaction', 'project', 'income', 'update', 'file'];
   app.datasources['mysql'].isActual(models, function(err, actual) {
     if (!actual) {
       app.datasources['mysql'].autoupdate(models, function(err, result) {

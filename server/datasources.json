@@ -4,12 +4,19 @@
     "connector": "memory"
   },
   "mysql": {
-    "host": "pma.testing.softjourn.if.ua",
+    "host": "db",
     "port": 3306,
     "database": "sj_foundation",
     "password": "sj_foundation",
     "name": "mysql",
     "connector": "mysql",
     "user": "sj_foundation"
+  },
+  "storage": {
+    "name": "storage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "/tmp/",
+    "maxFileSize": "52428800"
   }
 }

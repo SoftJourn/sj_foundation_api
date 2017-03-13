@@ -1,19 +1,18 @@
 {
-  "name": "update",
+  "name": "file",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "mixins": {
-    "TimeStamp": true
-  },
   "properties": {
-    "content": {
-      "type": "string",
-      "required": true
+    "name": {
+      "type": "string"
     },
-    "username": {
+    "type": {
+      "type": "string"
+    },
+    "url": {
       "type": "string",
       "required": true
     }

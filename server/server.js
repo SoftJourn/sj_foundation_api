@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.start = function() {
 
   // mysql autoupdate if needed
-  var models = ['account','transaction', 'project', 'income', 'update', 'accountAccessToken'];
+  var models = ['account','transaction', 'project', 'income', 'update', 'accountAccessToken', 'file'];
   app.datasources['mysql'].isActual(models, function(err, actual) {
     if (!actual) {
       app.datasources['mysql'].autoupdate(models, function(err, result) {

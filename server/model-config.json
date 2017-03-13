@@ -50,5 +50,13 @@
   "accountAccessToken": {
     "dataSource": "mysql",
     "public": false
+  },
+  "file": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "container": {
+    "dataSource": "storage",
+    "public": true
   }
 }

@@ -17,7 +17,6 @@ module.exports = function(app) {
       password: req.body.password
     };
 
-
     var options = {
       url: 'https://sjcoins-testing.softjourn.if.ua/auth/oauth/token',
       method: 'POST',
@@ -34,45 +33,42 @@ module.exports = function(app) {
     request(options, function(error, response, body) {
       if (!error) {
         var info = JSON.parse(body);
-        console.log(info);
         AccountModel.findOne({
           "where": {
             "email": userCredentials.username+'@softjourn.com',
           }
         }, function(err, user) {
           if(user) {
-            // user.createAccessToken(
-            //   3333,
-            //   function(err, token) {
-            //     console.log(err);
-            //     console.log(token);
-            //     token.create({id: token.id, access_token: info.accessToken, refreshToken: info.refresh_token, ttl: info.expires_in});
-            //       res.json(token);
-            //   });
-            AccountAccessToken.create(
-              {id: info.access_token, accessToken: info.access_token, refreshToken: info.refresh_token, ttl: info.expires_in*100, accountId: user.id},
-              function(err, token){
-                console.log(err)
-                console.log(token)
-            });
+            user.createAccessToken(
+              3333,
+              function(err, token) {
+                var newToken = {
+                  id: token.id,
+                  access_token: info.access_token,
+                  refreshToken: info.refresh_token,
+                  ttl: info.expires_in,
+                  accountId: user.id,
+                };
+                AccountAccessToken.create(newToken, function(err, token){
+                  if (err) {
+                    console.log(err);
+                  }
+                  res.cookie('X-Access-Token', token.id);
+                  res.json(user);
+                });
+
+              });
           } else {
-            // AccountModel.create({'username': 'dfitsak', 'email': 'asd@asd2', 'password': 'abc'}, function (err, user) {
-            //   if (err) {
-            //     console.log(err);
-            //   }
-            //   user.createAccessToken(5000, function(err, token) {
-            //     res.json({
-            //       "token": token.id,
-            //       "ttl": token.ttl,
-            //       'user': 'new user',
-            //     });
-            //   })
-            // });
+
           }
         });
       } else {
         console.log(err);
       }
     });
+  });
+
+  app.get('*', function(req, res) {
+    res.render('foundation');
   });
 };

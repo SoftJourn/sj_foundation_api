@@ -3,11 +3,6 @@
   "base": "AccessToken",
   "idInjection": false,
   "properties": {
-    "id": {
-      "type": "string",
-      "length": 1024,
-      "required": true
-    },
     "refreshToken": {
       "type": "string",
       "length": 1024,

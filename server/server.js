@@ -4,6 +4,7 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var path = require('path');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser')
 
 var app = module.exports = loopback();
 
@@ -23,6 +24,7 @@ app.use(loopback.token({
   currentUserLiteral: 'me'
 }));
 
+app.use(cookieParser());
 
 //START SERVER
 app.start = function() {

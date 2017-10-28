@@ -50,5 +50,9 @@
   "accountAccessToken": {
     "dataSource": "mysql",
     "public": false
+  },
+  "project_stats": {
+    "dataSource": "mysql",
+    "public": true
   }
 }

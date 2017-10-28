@@ -1,6 +1,18 @@
 version: '2'
 services:
-  node:
-    image: node
+#  node:
+#    image: node
+#    ports:
+#      - "3010:3010"
+  mysql:
+    image: mysql
+    environment:
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_DATABASE=sj_foundation
+     - MYSQL_USER=sj_foundation
+     - MYSQL_PASSWORD=sj_foundation
     ports:
-      - "3010:3010"
+      - "3308:3306"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - "./.data/db:/var/lib/mysql"

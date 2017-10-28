@@ -1,0 +1,34 @@
+{
+  "name": "project_stats",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "status": {
+      "type": "string",
+      "default": "draft"
+    },
+    "supporters": {
+      "type": "number",
+      "default": 0
+    },
+    "canDonate": {
+      "type": "boolean",
+      "default": false
+    },
+    "raised": {
+      "type": "number",
+      "default": 0
+    },
+    "transactionsCount": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

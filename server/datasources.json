@@ -4,12 +4,12 @@
     "connector": "memory"
   },
   "mysql": {
-    "host": "pma.testing.softjourn.if.ua",
-    "port": 3306,
+    "host": "localhost",
+    "port": 3308,
     "database": "sj_foundation",
-    "password": "sj_foundation",
+    "password": "root",
     "name": "mysql",
     "connector": "mysql",
-    "user": "sj_foundation"
+    "user": "root"
   }
 }

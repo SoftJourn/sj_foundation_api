@@ -5,8 +5,24 @@
   "options": {
     "validateUpsert": true
   },
+  "forceId": false,
   "properties": {
-    "name": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string",
+      "mysql": {
+        "dataType": "LONGTEXT"
+      }
+    },
+    "shortDescription": {
+      "type": "string"
+    },
+    "thumbUrl": {
       "type": "string"
     },
     "price": {
@@ -54,6 +70,9 @@
     },
     "category": {
       "type": "string"
+    },
+    "authorName": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -72,6 +91,11 @@
     "updates": {
       "type": "hasMany",
       "model": "update",
+      "foreignKey": ""
+    },
+    "projectStats": {
+      "type": "hasOne",
+      "model": "project_stats",
       "foreignKey": ""
     }
   },

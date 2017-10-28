@@ -1,74 +1,17 @@
-var request = require('request');
+
 
 module.exports = function(app) {
-  //get User model from the express app
   var AccountModel = app.models.Account;
   var AccountAccessToken = app.models.AccountAccessToken;
+  // var auth = ;
+  app.use('/admin', require('./routes/admin')(app));
+  app.use('/api', require('./routes/auth')(app));
+  app.use('/api/projects', require('./routes/projects')(app))
+  app.use('/api/categories', require('./routes/categoreies')(app))
+  app.use('/api/comments', require('./routes/comments')(app))
 
-  app.get('/api/login', function (req, res) {
-    res.render('login');
-  });
 
-  app.post('/api/login', function(req, res) {
-
-    //parse user credentials from request body
-    const userCredentials = {
-      username: req.body.username,
-      password: req.body.password
-    };
-
-    var options = {
-      url: 'https://sjcoins-testing.softjourn.if.ua/auth/oauth/token',
-      method: 'POST',
-      form: {
-        username: userCredentials.username,
-        password: userCredentials.password,
-        grant_type: 'password'
-      },
-      headers: {
-        'Authorization': 'Basic dXNlcl9jcmVkOnN1cGVyc2VjcmV0'
-      }
-    };
-
-    request(options, function(error, response, body) {
-      if (!error) {
-        var info = JSON.parse(body);
-        AccountModel.findOne({
-          "where": {
-            "email": userCredentials.username+'@softjourn.com',
-          }
-        }, function(err, user) {
-          if(user) {
-            user.createAccessToken(
-              3333,
-              function(err, token) {
-                var newToken = {
-                  id: token.id,
-                  access_token: info.access_token,
-                  refreshToken: info.refresh_token,
-                  ttl: info.expires_in,
-                  accountId: user.id,
-                };
-                AccountAccessToken.create(newToken, function(err, token){
-                  if (err) {
-                    console.log(err);
-                  }
-                  res.cookie('X-Access-Token', token.id);
-                  res.json(user);
-                });
-
-              });
-          } else {
-
-          }
-        });
-      } else {
-        console.log(err);
-      }
-    });
-  });
-
-  app.get('*', function(req, res) {
-    res.render('foundation');
-  });
+  // app.get('*', function(req, res) {
+  //   res.render('foundation');
+  // });
 };

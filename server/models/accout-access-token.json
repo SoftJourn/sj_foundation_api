@@ -5,13 +5,13 @@
   "properties": {
     "refreshToken": {
       "type": "string",
-      "length": 1024,
-      "required": false
+      "required": false,
+      "length": 1024
     },
     "accessToken": {
       "type": "string",
-      "length": 1024,
-      "required": false
+      "required": false,
+      "length": 1024
     }
   },
   "validations": [],

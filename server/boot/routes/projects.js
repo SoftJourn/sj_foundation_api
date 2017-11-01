@@ -11,12 +11,12 @@ module.exports = function(app) {
     });
   });
 
-  router.get('/:slug', function (req, res) {
+  router.get('/:id', function (req, res) {
     var Project = app.models.Project;
     Project.findOne({
       include: 'projectStats',
       where: {
-        slug: req.params.slug
+        id: req.params.id
       }
     }, function (err, projects) {
       res.json(projects);

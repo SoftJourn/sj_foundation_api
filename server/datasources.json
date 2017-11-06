@@ -11,5 +11,12 @@
     "name": "mysql",
     "connector": "mysql",
     "user": "root"
+  },
+  "storage": {
+    "name": "storage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "/tmp/",
+    "maxFileSize": "52428800"
   }
 }

@@ -56,7 +56,6 @@
     "public": true
   },
   "comment": {
-    "dataSource": "mysql",
-    "public": true
+    "dataSource": "mysql"
   }
 }

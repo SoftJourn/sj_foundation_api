@@ -17,7 +17,6 @@ module.exports = function(app) {
       username: req.body.username,
       password: req.body.password
     };
-
     var options = {
       url: 'https://sjcoins-testing.softjourn.if.ua/auth/oauth/token',
       method: 'POST',
@@ -31,36 +30,30 @@ module.exports = function(app) {
       }
     };
 
+
     request(options, function(error, response, body) {
       if (!error) {
         var info = JSON.parse(body);
         AccountModel.findOne({
           "where": {
-            "email": userCredentials.username+'@softjourn.com',
+            "email": getEmailByUsername(userCredentials.username),
           }
         }, function(err, user) {
           if(user) {
-            user.createAccessToken(
-              3333,
-              function(err, token) {
-                var newToken = {
-                  id: token.id,
-                  access_token: info.access_token,
-                  refreshToken: info.refresh_token,
-                  ttl: info.expires_in,
-                  accountId: user.id,
-                };
-                AccountAccessToken.create(newToken, function(err, token){
-                  if (err) {
-                    console.log(err);
-                  }
-                  res.cookie('X-Access-Token', token.id);
-                  res.json(user);
-                });
-
-              });
+            createToken(user, info).then(function(token) {
+              res.cookie('X-Access-Token', token.id);
+              res.json({user, token});
+            }).catch(function(error) {
+              res.cookie('X-Access-Token', error.id);
+              res.json({user, token: error});
+            });
           } else {
-
+            createUser(AccountModel, userCredentials).then(function(user) {
+              createToken(user, info).then(function(token) {
+                res.cookie('X-Access-Token', token.id);
+                res.json({user, token});
+              })
+            });
           }
         });
       } else {
@@ -69,6 +62,53 @@ module.exports = function(app) {
     });
   });
 
+  function getEmailByUsername(username) {
+    return username+'@softjourn.com';
+  }
+
+
+  function createUser(AccountModel, userCredentials) {
+    return new Promise(function(resolve, reject){
+      AccountModel.create({
+        email: getEmailByUsername(userCredentials.username),
+        password: userCredentials.password
+      }, function(err, account) {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(account);
+      });
+    });
+  }
+
+  function createToken(user, info) {
+    return new Promise(function(resolve, reject){
+      user.createAccessToken(
+        33339999,
+        function(err, token) {
+          if (err) {
+            resolve(err);
+            return;
+          }
+          var newToken = {
+            id: token.id,
+            access_token: info.access_token,
+            refreshToken: info.refresh_token,
+            ttl: 99999999,
+            accountId: user.id,
+          };
+          AccountAccessToken.update(newToken, function(err, token){
+            if (err) {
+              reject(newToken);
+              return;
+            }
+            resolve(token);
+          });
+        });
+    });
+  }
+
   return router;
 
-}
+};

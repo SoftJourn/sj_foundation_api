@@ -13,7 +13,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // to support JSON-encoded bodies
-app.middleware('parse', bodyParser.json());
+app.middleware('parse', bodyParser());
 // to support URL-encoded bodies
 app.middleware('parse', bodyParser.urlencoded({
   extended: true,
@@ -21,16 +21,17 @@ app.middleware('parse', bodyParser.urlencoded({
 
 app.use(loopback.token({
   model: app.models.accountAccessToken,
-  currentUserLiteral: 'me'
+  currentALiteral: 'me'
 }));
 
 app.use(cookieParser());
+// app.use(bodyParser.json());
 
 //START SERVER
 app.start = function() {
 
   // mysql autoupdate if needed
-  var models = ['account','transaction', 'project', 'income', 'update', 'accountAccessToken', 'project_stats'];
+  var models = ['account','transaction', 'project', 'income', 'update', 'accountAccessToken', 'project_stats', 'comment'];
   app.datasources['mysql'].isActual(models, function(err, actual) {
     if (!actual) {
       app.datasources['mysql'].autoupdate(models, function(err, result) {

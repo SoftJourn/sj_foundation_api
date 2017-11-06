@@ -38,7 +38,28 @@ function updateProjects(projectModel, wpProjects) {
   });
 }
 
+function updateComments(projectModel, project, wpComments) {
+  return new Promise(function(resolve, reject) {
+    _.each(wpComments, function(comment) {
+      const commentData = {
+        commentId: parseInt(comment.id),
+        content: comment.content.rendered,
+        authorName: comment.author_name,
+        authorId: parseInt(comment.author),
+        date: comment.date,
+      };
+      try {
+          project.comments.create(commentData);
+      } catch (e) {
+        reject(e);
+      }
+    });
+    resolve();
+  });
+}
+
 
 module.exports = {
-  updateProjects: updateProjects
+  updateProjects: updateProjects,
+  updateComments: updateComments,
 };

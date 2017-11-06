@@ -6,7 +6,14 @@ module.exports = function(app) {
 
   router.get('/', function (req, res) {
     var Project = app.models.Project;
-    Project.find({include: 'projectStats'}, function (err, projects) {
+    var where = {};
+    if (!!req.query.category) {
+      where.category = req.query.category
+    }
+    Project.find({
+      include: ['projectStats'],
+      where: where,
+    }, function (err, projects) {
       res.json(projects);
     });
   });
@@ -14,7 +21,7 @@ module.exports = function(app) {
   router.get('/:id', function (req, res) {
     var Project = app.models.Project;
     Project.findOne({
-      include: 'projectStats',
+      include: ['projectStats', 'comments'],
       where: {
         id: req.params.id
       }

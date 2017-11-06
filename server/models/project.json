@@ -97,6 +97,11 @@
       "type": "hasOne",
       "model": "project_stats",
       "foreignKey": ""
+    },
+    "comments": {
+      "type": "hasMany",
+      "model": "comment",
+      "foreignKey": ""
     }
   },
   "acls": [],
